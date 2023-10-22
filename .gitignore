@@ -1,0 +1,7 @@
+.gradle
+build/**
+.idea
+src/main/resources/tokenFile.txt
+spotifi-*.json
+
+git rm --cached spotifi-a965f-0fb679e55c98.json

@@ -2,6 +2,7 @@ plugins {
     java
     id("org.springframework.boot") version "3.2.0-SNAPSHOT"
     id("io.spring.dependency-management") version "1.1.2"
+    id("com.diffplug.spotless") version "6.23.0"
 }
 
 group = "com.ficrowe"
@@ -25,11 +26,26 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("software.amazon.awssdk:dynamodb:2.20.125")
+    implementation("org.springframework.boot:spring-boot-autoconfigure")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.retry:spring-retry:2.0.4")
+
+    implementation("se.michaelthelin.spotify:spotify-web-api-java:8.3.0")
+
     compileOnly("org.projectlombok:lombok")
-    compileOnly("software.amazon.awssdk:aws-sdk-java:2.20.125")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // Firebase
+    implementation("com.google.firebase:firebase-admin:9.2.0")
+//    implementation("com.google.firebase:firebase-firestore:24.8.1")
+//    implementation("com.google.firebase:firebase-auth:22.1.2")
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
 }
 
 tasks.withType<Test> {
